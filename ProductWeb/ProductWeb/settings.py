@@ -114,12 +114,14 @@ WSGI_APPLICATION = 'ProductWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'product_web',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'dbsqlite3.db'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'product_web',
+        # 'USER': 'root',
+        # 'PASSWORD': 'admin',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306',
         # 'ENGINE': 'django.db.backends.postgresql',
         # 'NAME': 'product_web',
         # 'USER': 'milan',
