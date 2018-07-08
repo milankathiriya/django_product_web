@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<hr>
+<span class="display-4">Update Product:</span>
+<br><br>
+<form action="{% url 'products:edit' id=product.id %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <table style="border-collapse: separate; border-spacing: 20px;">
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name" value="{{ product.name }}"></td>
+    </tr>
+    <tr>
+      <td>Price:</td>
+      <td><input type="number" name="price" value="{{ product.price }}"></td>
+    </tr>
+    <tr>
+      <td>Quantity:</td>
+      <td><input type="number" name="quantity" value="{{ product.quantity }}"></td>
+    </tr>
+    <tr>
+      <td>Photo:</td>
+      <td><input type="file" name="thumb" value="{{ product.thumb.url }"></td>
+    </tr>
+  </table>
+
+
+   <br><br>
+
+  <input type="submit" class="btn btn-outline-warning" value="UPDATE">
+</form>
+
+{% endblock %}

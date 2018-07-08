@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<hr>
+<span class="display-4">Log In:</span>
+<br><br>
+<form action="{% url 'accounts:login' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if request.GET.next %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}">
+  {% endif %}
+  <input type="submit" class="btn btn-outline-primary" value="Log In">
+</form>
+
+<br>
+  <p><strong>-- OR --</strong></p>
+  <strong>Login with: </strong><br><br>
+
+  <ul class="nav">
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-danger" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fab fa-lg fa-google"></i> Google+</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-primary" href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-lg fa-facebook"></i> Facebook</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-dark" href="{% url 'social:begin' 'github' %}"><i class="fab fa-lg fa-github"></i> GitHub</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="btn btn-outline-primary" href="{% url 'social:begin' 'twitter' %}"><i class="fab fa-lg fa-twitter"></i> Twitter</a>
+    </li>
+  </ul>
+
+{% endblock %}

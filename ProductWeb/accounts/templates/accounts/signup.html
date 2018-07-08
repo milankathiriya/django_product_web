@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<hr>
+<span class="display-4">Sign Up:</span>
+<br><br>
+{{ error }}
+<form action="{% url 'accounts:signup' %}" method="POST" class="form-site">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" class="btn btn-outline-primary btn-lg" value="Sign Up">
+</form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<hr>
+  {% if user.is_authenticated %}
+    <p>Hello <strong>{{ user.username }}</strong></p>
+  {% endif %}
+    <h2>Products:</h2>
+    <br>
+
+    <ul class="nav">
+    {% for product in products %}
+
+      <li class="nav-item" style="margin: auto; padding: auto;">
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">
+            <h3><a style="text-decoration: none;" href="{% url 'products:detail' id=product.id %}">{{ product.name }}</a></h3>
+            {% if user.is_authenticated %}
+              <a href="{% url 'products:edit' id=product.id %}" style="text-decoration: none; color: darkblue;"><i class="far fa-lg fa-edit"></i></a>&nbsp;
+              <a href="{% url 'products:delete' id=product.id %}" style="text-decoration: none; color: red;"><i class="fas fa-lg fa-trash"></i></a>
+            {% endif %}
+          </div>
+          <div class="card-body text-dark">
+            <img class="card-img-top" src="{{ product.thumb.url }}" alt="Card image cap">
+            <h5 class="card-title mt-2">Price: {{ product.price }}</h5>
+            <p class="card-text">Quantity: {{ product.quantity }}</p>
+            {% if updated_date %}
+              <p class="card-text text-muted">Added at: {{ product.updated_date }}</p>
+            {% else %}
+              <p class="card-text text-muted">Added at: {{ product.date }}</p>
+            {% endif %}
+
+          </div>
+        </div>
+      </li>
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}
